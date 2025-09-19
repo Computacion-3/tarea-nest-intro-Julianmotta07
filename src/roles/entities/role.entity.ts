@@ -1,17 +1,33 @@
 import { User } from '../../users/entities/user.entity';
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Permission } from '../../permissions/entities/permission.entity';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 
-@Entity()
+@Entity('roles')
 export class Role {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string;
+  @Column({ unique: true })
+  name: string;
 
-    @Column()
-    description: string;
+  @Column({ nullable: true })
+  description: string;
 
-    @OneToMany(() => User, (user) => user.role)
-    users: User[];
+  @OneToMany(() => User, (user) => user.role)
+  users: User[];
+
+  @ManyToMany(() => Permission, (permission) => permission.roles, { eager: true })
+  @JoinTable({
+    name: 'roles_permissions', // tabla intermedia
+    joinColumn: { name: 'role_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'permission_id', referencedColumnName: 'id' },
+  })
+  permissions: Permission[];
 }
