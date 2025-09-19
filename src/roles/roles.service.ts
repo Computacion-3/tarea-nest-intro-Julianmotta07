@@ -54,7 +54,6 @@ export class RolesService {
     });
   }
 
-  // 🚀 Nuevo método
   async addPermissionToRole(roleId: number, permissionId: number): Promise<Role> {
     const role = await this.roleRepository.findOne({
       where: { id: roleId },
@@ -65,7 +64,6 @@ export class RolesService {
     const permission = await this.permissionRepository.findOneBy({ id: permissionId });
     if (!permission) throw new NotFoundException(`Permission with id ${permissionId} not found`);
 
-    // Evitar duplicados
     const hasPermission = role.permissions.some((p) => p.id === permissionId);
     if (!hasPermission) {
       role.permissions.push(permission);
