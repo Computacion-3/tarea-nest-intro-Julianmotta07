@@ -1,0 +1,124 @@
+{
+  "info": {
+    "name": "NestJS API",
+    "_postman_id": "f6d12a8c-92e3-4c6a-8b9b-2345abcd6789",
+    "description": "Colección para probar los endpoints de Users, Roles, Permissions y Games en NestJS",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Roles",
+      "item": [
+        {
+          "name": "Create Role",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"admin\"\n}" },
+            "url": "http://localhost:3000/roles"
+          }
+        },
+        { "name": "Get All Roles", "request": { "method": "GET", "url": "http://localhost:3000/roles" } },
+        { "name": "Get Role by ID", "request": { "method": "GET", "url": "http://localhost:3000/roles/1" } },
+        {
+          "name": "Update Role",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"superadmin\"\n}" },
+            "url": "http://localhost:3000/roles/1"
+          }
+        },
+        { "name": "Delete Role", "request": { "method": "DELETE", "url": "http://localhost:3000/roles/1" } },
+        {
+          "name": "Add Permission to Role",
+          "request": { "method": "POST", "url": "http://localhost:3000/roles/1/permissions/1" }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"johndoe\",\n  \"email\": \"john@example.com\",\n  \"passwordHash\": \"secret123\",\n  \"bio\": \"I am a gamer\",\n  \"roleName\": \"admin\"\n}"
+            },
+            "url": { "raw": "http://localhost:3000/users", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["users"] }
+          }
+        },
+        { "name": "Get All Users", "request": { "method": "GET", "url": "http://localhost:3000/users" } },
+        { "name": "Get User by ID", "request": { "method": "GET", "url": "http://localhost:3000/users/1" } },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"updatedUser\",\n  \"email\": \"updated@example.com\",\n  \"bio\": \"Updated bio\"\n}"
+            },
+            "url": "http://localhost:3000/users/1"
+          }
+        },
+        { "name": "Delete User", "request": { "method": "DELETE", "url": "http://localhost:3000/users/1" } }
+      ]
+    },
+    {
+      "name": "Permissions",
+      "item": [
+        {
+          "name": "Create Permission",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"READ_USERS\"\n}" },
+            "url": "http://localhost:3000/permissions"
+          }
+        },
+        { "name": "Get All Permissions", "request": { "method": "GET", "url": "http://localhost:3000/permissions" } },
+        { "name": "Get Permission by ID", "request": { "method": "GET", "url": "http://localhost:3000/permissions/1" } },
+        {
+          "name": "Update Permission",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"WRITE_USERS\"\n}" },
+            "url": "http://localhost:3000/permissions/1"
+          }
+        },
+        { "name": "Delete Permission", "request": { "method": "DELETE", "url": "http://localhost:3000/permissions/1" } }
+      ]
+    },
+    {
+      "name": "Games",
+      "item": [
+        {
+          "name": "Create Game (by UserId)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"title\": \"Zelda\",\n  \"genre\": \"Adventure\"\n}" },
+            "url": "http://localhost:3000/games/1"
+          }
+        },
+        { "name": "Get All Games", "request": { "method": "GET", "url": "http://localhost:3000/games" } },
+        { "name": "Get Game by ID", "request": { "method": "GET", "url": "http://localhost:3000/games/1" } },
+        {
+          "name": "Update Game",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"title\": \"Updated Zelda\",\n  \"genre\": \"Action RPG\"\n}" },
+            "url": "http://localhost:3000/games/1"
+          }
+        },
+        { "name": "Delete Game", "request": { "method": "DELETE", "url": "http://localhost:3000/games/1" } }
+      ]
+    }
+  ]
+}
