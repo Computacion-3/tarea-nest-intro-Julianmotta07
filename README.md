@@ -1,11 +1,6 @@
 1. **Clonar el repositorio**
 
-```bash
-git clone <url-del-repo>
-cd <nombre-del-repo>
-```
-
-2:  **Instalar dependencias**
+2. **Instalar dependencias**
 
 ```bash
 npm install
@@ -22,7 +17,7 @@ DB_DATABASE=mydatabase
 DB_SYNCHRONIZE=true
 ```
 
-5. **Levantar la base de datos con Docker**
+4. **Levantar la base de datos con Docker**
 ```bash
 docker-compose up -d
 ```
@@ -31,3 +26,4 @@ docker-compose up -d
 ```bash
 npm run start:dev
 ```
+
